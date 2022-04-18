@@ -1,0 +1,25 @@
+version: "3"
+services:
+  database:
+    image: "postgres:13-alpine"
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: inventory
+      POSTGRES_USER: admin
+      POSTGRES_DB: inventory
+    volumes:
+      - $PWD/.db:/var/lib/postgresql/data
+  
+#  userdb:
+#    image: "postgres:13-alpine"
+#    restart: always
+#    ports:
+#      - "6543:5432"
+#    environment:
+#      POSTGRES_PASSWORD: password
+#      POSTGRES_USER: admin
+#      POSTGRES_DB: userdb
+#    volumes:
+#      - $PWD/.userdb:/var/lib/postgresql/data

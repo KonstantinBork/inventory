@@ -1,0 +1,13 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "comma-dangle": ["error", "always"],
+    "eol-last": ["warn", "never"],
+    "indent": ["warn", 4],
+    "max-len": ["error", {"code": 120}],
+    "no-else-return": ["error", {"allowElseIf": false}],
+    "no-tabs": ["error", {"allowIndentationTabs": false}],
+    "object-curly-spacing": ["warn", "always"],
+    "semi": ["error", "never"]
+  }
+}
