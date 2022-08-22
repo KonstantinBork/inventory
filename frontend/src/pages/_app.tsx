@@ -13,9 +13,9 @@ type AppPropsWithLayout = AppProps & {
 }
 
 const MyApp = ({ Component, pageProps, }: AppPropsWithLayout) => {
-    const getLayout = Component.getLayout ?? (page => page)
+  const getLayout = Component.getLayout ?? (page => page)
 
-    return getLayout(<Component {...pageProps} />)
+  return getLayout(<Component {...pageProps} />)
 }
 
 export default appWithTranslation(MyApp as ComponentType<AppProps>)

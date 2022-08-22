@@ -6,15 +6,15 @@ type Props = {
 }
 
 const Infobox = ({ info, }: Props) => {
-    return (
-        <div className="infobox my-2 lg:my-4">
+  return (
+    <div className="infobox my-2 lg:my-4">
             Infobox
-            <div>Plattformen: {info.map(i => (
-                <BoxLink url="/" key={i.platform_id.name} name={i.platform_id.name} />
-            ))}
-            </div>
-        </div>
-    )
+      <div>Plattformen: {info.map(i => (
+        <BoxLink url="/" key={i.platform_id.name} name={i.platform_id.name} />
+      ))}
+      </div>
+    </div>
+  )
 }
 
 export default Infobox

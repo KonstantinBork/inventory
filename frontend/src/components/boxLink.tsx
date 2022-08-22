@@ -7,11 +7,11 @@ type Props = {
 }
 
 const BoxLink = ({ url, key, name, }: Props) => {
-    return (
-        <Link href={url}>
-            <span className="border border-solid border-black mx-1" key={key}>{name}</span>
-        </Link>
-    )
+  return (
+    <Link href={url}>
+      <span className="border border-solid border-black mx-1" key={key}>{name}</span>
+    </Link>
+  )
 }
 
 export default BoxLink

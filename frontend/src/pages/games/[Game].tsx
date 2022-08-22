@@ -7,57 +7,57 @@ import Main from "../../layouts/main"
 import { Platform, } from "../../types/Platform"
 import Image from "next/image"
 import { ReactElement, } from "react"
-import Title from "../../blocks/title";
-import Infobox from "../../blocks/infoBox";
+import Title from "../../blocks/title"
+import Infobox from "../../blocks/infoBox"
 
 const Game = ({ foundGame, }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    const platforms: Platform[] = foundGame.platforms
+  const platforms: Platform[] = foundGame.platforms
 
-    return (
-        <>
-            <Title titleName={foundGame.name} />
-            <div className="content mx-2 lg:mx-4">
-                <Infobox info={platforms} />
-                <div className="float-right ml-2 lg:ml-4">
-                    <Image
-                        src={foundGame.image_url}
-                        height={200}
-                        width={200}
-                        objectFit="contain"
-                        alt={`${foundGame.name} Cover`}
-                    />
-                </div>
-                <p className="text-justify">{foundGame.description}</p>
-            </div>
-        </>
-    )
+  return (
+    <>
+      <Title titleName={foundGame.name} />
+      <div className="content mx-2 lg:mx-4">
+        <Infobox info={platforms} />
+        <div className="float-right ml-2 lg:ml-4">
+          <Image
+            src={foundGame.image_url}
+            height={200}
+            width={200}
+            objectFit="contain"
+            alt={`${foundGame.name} Cover`}
+          />
+        </div>
+        <p className="text-justify">{foundGame.description}</p>
+      </div>
+    </>
+  )
 }
 
 Game.getLayout = (page: ReactElement) => {
-    return (
-        <Main>
-            {page}
-        </Main>
-    )
+  return (
+    <Main>
+      {page}
+    </Main>
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { Game: game, } = context.query
-    if (!context.locale) {
-        return { props: {}, }
+  const { Game: game, } = context.query
+  if (!context.locale) {
+    return { props: {}, }
+  }
+
+  const videogameData: VideogameResponse = await getMedia(MediaType.VIDEOGAME, game as string)
+
+  const foundGame = videogameData?.videogame[0]
+
+  if (!foundGame) {
+    return {
+      notFound: true,
     }
+  }
 
-    const videogameData: VideogameResponse = await getMedia(MediaType.VIDEOGAME, game as string)
-
-    const foundGame = videogameData?.videogame[0]
-
-    if (!foundGame) {
-        return {
-            notFound: true,
-        }
-    }
-
-    return { props: { foundGame, ...(await serverSideTranslations(context.locale, [])), }, }
+  return { props: { foundGame, ...(await serverSideTranslations(context.locale, [])), }, }
 }
 
 export default Game
